@@ -16,17 +16,16 @@ var api = '/api/whoami';
 app.get(api, function(request, response, next){
   console.log('19080');
   
-  var language;
-  var software;
+  var language = request.acceptsLanguages();
+  var software = request.get('User-Agent');
   var ipaddress = request.ip;
   
   response.json({
-    ipaddress: ipaddress
+    ipaddress: ipaddress,
+    language: language[0],
+    software: software
   });
 });
-
-
-
 
 
 // listen for requests :)
